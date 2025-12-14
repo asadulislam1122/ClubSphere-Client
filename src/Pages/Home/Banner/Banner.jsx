@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import bannerBg from "../../../assets/desktop-wallpaper-understanding-the-logistics-of-importing-and-exporting-goods-for-your-business-import-export.jpg";
 import { motion } from "framer-motion";
 
@@ -78,12 +79,15 @@ const Banner = () => {
           and enjoy a vibrant community where everyone grows together.
         </motion.p>
 
-        <motion.button
-          className="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-6 py-3 sm:py-4 rounded-lg transition w-full sm:w-auto"
-          variants={buttonVariants}
-        >
-          JOIN THE CLUB
-        </motion.button>
+        <Link to={"all-club"}>
+          {" "}
+          <motion.button
+            className="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-6 py-3 sm:py-4 rounded-lg transition w-full sm:w-auto"
+            variants={buttonVariants}
+          >
+            JOIN THE CLUB
+          </motion.button>
+        </Link>
       </motion.div>
     </div>
   );

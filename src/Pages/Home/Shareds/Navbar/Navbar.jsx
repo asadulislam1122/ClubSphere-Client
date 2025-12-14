@@ -23,14 +23,23 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink>Home</NavLink>
+        <NavLink to={"/"}>Home</NavLink>
       </li>
       <li>
-        <NavLink to={"/club"}>Club</NavLink>
+        <NavLink to={"/all-club"}>All Club</NavLink>
       </li>
+
       <li>
         <NavLink>Events</NavLink>
       </li>
+
+      {user && (
+        <>
+          <li>
+            <NavLink to={"/dashboard/my-club"}>My Club</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (
@@ -69,13 +78,13 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <p>
-          <img
-            className="w-9 h-10 rounded-4xl mr-1"
-            src={user?.photoURL}
-            alt=""
-          />
-        </p>
+        <img
+          className="w-10 h-10 rounded-full mr-2"
+          src={user?.photoURL}
+          referrerPolicy="no-referrer"
+          alt={user?.displayName || "User Photo"}
+        />
+
         {user ? (
           <a onClick={handleSignOut} className="btn bg-primary text-white">
             Log Out
