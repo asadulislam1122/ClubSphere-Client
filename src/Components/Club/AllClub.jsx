@@ -45,7 +45,13 @@ const AllClub = () => {
 
               <div className="flex justify-between items-center content-center ">
                 <div className="text-sm text-gray-500 mt-1">
-                  Status: <span className="font-semibold">{club.status}</span>
+                  <button
+                    className={` font-semibold text-black ${
+                      club.status === "paid" ? "text-green-600" : "text-red-600"
+                    }`}
+                  >
+                    {club.status === "paid" ? "Paid" : "Unpaid"}
+                  </button>
                 </div>
                 <button className="btn btn-sm btn-secondary">
                   <Link to={`/club/${club._id}`}>See Details</Link>

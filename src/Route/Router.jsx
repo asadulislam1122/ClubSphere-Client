@@ -10,6 +10,9 @@ import Dashboardlayout from "../Layout/Dashboard/Dashboardlayout";
 import MyClub from "../Pages/Dashboard/MyClub";
 import AllClub from "../Components/Club/AllClub";
 import ClubDetails from "../Components/Club/ClubDetails";
+import Payment from "../Layout/Dashboard/Payment/Payment";
+import PaymentSuccessful from "../Layout/Dashboard/Payment/PaymentSuccessful";
+import PaymentCencel from "../Layout/Dashboard/Payment/PaymentCencel";
 
 export const router = createBrowserRouter([
   {
@@ -68,6 +71,18 @@ export const router = createBrowserRouter([
             <Club></Club>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "payment/:clubId",
+        Component: Payment,
+      },
+      {
+        path: "payment-success",
+        Component: PaymentSuccessful,
+      },
+      {
+        path: "payment-canceled",
+        Component: PaymentCencel,
       },
     ],
   },

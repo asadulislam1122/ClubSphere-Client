@@ -77,9 +77,16 @@ const MyClub = () => {
                 <span className="flex items-center gap-1">
                   <FaMoneyBillAlt /> ${club.membershipFee}
                 </span>
-                <span className="flex items-center gap-1">
+                {/* <span className="flex items-center gap-1">
                   <FaStar /> {club.status}
-                </span>
+                </span> */}
+                <button
+                  className={` font-semibold text-black ${
+                    club.status === "paid" ? "text-green-600" : "text-red-600"
+                  }`}
+                >
+                  {club.status === "paid" ? "Paid" : "Unpaid"}
+                </button>
               </div>
               <div className="flex justify-end mt-4">
                 <button className="btn btn-sm btn-secondary">

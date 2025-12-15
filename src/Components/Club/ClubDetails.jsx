@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const ClubDetails = () => {
   const club = useLoaderData();
@@ -17,6 +17,14 @@ const ClubDetails = () => {
       <p className="mt-2">Location: {club.location}</p>
       <p className="mt-2">Membership Fee: ${club.membershipFee}</p>
       <p className="mt-2">Status: {club.status}</p>
+
+      {/* ✅ Correct way */}
+      <Link
+        to={`/dashboard/payment/${club._id}`}
+        className="btn btn-primary text-white btn-sm mt-4"
+      >
+        Join
+      </Link>
     </div>
   );
 };
