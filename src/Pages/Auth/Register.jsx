@@ -5,9 +5,11 @@ import { Link, useNavigate } from "react-router";
 import SosialLogin from "./SosialLogin";
 import { toast } from "react-toastify";
 import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const Register = () => {
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -18,11 +20,11 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleRegistation = (data) => {
-    console.log("after register", data.photo[0]);
+    // console.log("after register", data.photo[0]);
     const profileImg = data.photo[0];
     registerUser(data.email, data.password)
-      .then((result) => {
-        console.log(result.user);
+      .then(() => {
+        // console.log(result.user);
         // store data img
         const formData = new FormData();
         formData.append("image", profileImg);
@@ -30,11 +32,23 @@ const Register = () => {
           import.meta.env.VITE_image_host
         }`;
         axios.post(image_Api_URL, formData).then((res) => {
-          console.log("after img uploade", res.data.data.url);
+          // console.log("after img uploade", res.data.data.url);
+          const photoURL = res.data.data.url;
+          // create user in the database
+          const userInfo = {
+            email: data.email,
+            displayName: data.name,
+            photoURL: photoURL,
+          };
+          axiosSecure.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log("user created database");
+            }
+          });
           // update profile
           const userProfile = {
             displayName: data.name,
-            photoURL: res.data.data.url,
+            photoURL: photoURL,
           };
           updateUserProfile(userProfile)
             .then(() => {

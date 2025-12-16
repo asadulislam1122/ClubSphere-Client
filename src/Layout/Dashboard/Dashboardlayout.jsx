@@ -1,5 +1,6 @@
 import React from "react";
 import { FaCcDinersClub } from "react-icons/fa";
+import { RiSecurePaymentLine } from "react-icons/ri";
 import { Link, Outlet } from "react-router";
 import { IoIosCreate } from "react-icons/io";
 const Dashboardlayout = () => {
@@ -78,7 +79,7 @@ const Dashboardlayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="My Clubs"
               >
-                {/* Settings icon */}
+                {/* Club icon */}
                 <FaCcDinersClub></FaCcDinersClub>
                 <span className="is-drawer-close:hidden">My Clubs</span>
               </Link>
@@ -90,9 +91,21 @@ const Dashboardlayout = () => {
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Create Club"
               >
-                {/* Settings icon */}
+                {/* create icon */}
                 <IoIosCreate></IoIosCreate>
                 <span className="is-drawer-close:hidden">Create Club</span>
+              </Link>
+            </li>
+            {/* payment history */}
+            <li>
+              <Link
+                to={"/dashboard/payment-history"}
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Payment History"
+              >
+                {/* payment icon */}
+                <RiSecurePaymentLine />
+                <span className="is-drawer-close:hidden">Payment History</span>
               </Link>
             </li>
             {/* List item */}

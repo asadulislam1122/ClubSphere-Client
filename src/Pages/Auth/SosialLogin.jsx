@@ -13,6 +13,12 @@ const SosialLogin = () => {
         console.log(result.user);
         toast.success("Google Login Sucessfull !");
         navigate("/");
+        // create user in the database
+        // const userInfo = {
+        //   email: data.email,
+        //   displayName: data.name,
+        //   photoURL: photoURL,
+        // };
       })
       .catch((err) => {
         console.log(err);

@@ -142,6 +142,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 const Club = () => {
   const { user } = useAuth();
@@ -151,7 +152,7 @@ const Club = () => {
     formState: { errors },
   } = useForm();
   const axiosSecure = useAxiosSecure();
-
+  const navigate = useNavigate();
   const onSubmit = async (data) => {
     try {
       // 1️⃣ Banner photo upload
@@ -182,6 +183,7 @@ const Club = () => {
       const res = await axiosSecure.post("/club", clubData);
       console.log("Club saved:", res.data);
       toast.success("Club created successfully!");
+      navigate("/dashboard/my-club");
     } catch (err) {
       console.error(err);
       toast.error("Failed to create club!");

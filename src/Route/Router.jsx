@@ -13,6 +13,7 @@ import ClubDetails from "../Components/Club/ClubDetails";
 import Payment from "../Layout/Dashboard/Payment/Payment";
 import PaymentSuccessful from "../Layout/Dashboard/Payment/PaymentSuccessful";
 import PaymentCencel from "../Layout/Dashboard/Payment/PaymentCencel";
+import PaymentHistry from "../Layout/Dashboard/Payment/PaymentHistry";
 
 export const router = createBrowserRouter([
   {
@@ -83,6 +84,10 @@ export const router = createBrowserRouter([
       {
         path: "payment-canceled",
         Component: PaymentCencel,
+      },
+      {
+        path: "payment-history",
+        Component: PaymentHistry,
       },
     ],
   },
