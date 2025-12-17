@@ -57,6 +57,16 @@
 //     const userCollection = db.collection("users");
 //     const managerCollection = db.collection("manager");
 
+//     // middele more with database access
+//     const verifayAdmin = async (req, res, next) => {
+//       const email = req.decoded_email;
+//       const query = { email };
+//       const user = await userCollection.findOne(query);
+//       if (!user || user.role !== "admin") {
+//         return res.status(403).send({ message: "forbidden access" });
+//       }
+//       next();
+//     };
 //     // user related api
 
 //     app.post("/users", async (req, res) => {
@@ -72,6 +82,37 @@
 //       res.send(result);
 //     });
 
+//     // users get
+//     app.get("/users", verifyFBtoken, async (req, res) => {
+//       const cursor = userCollection.find().sort({ createdAt: -1 });
+//       const result = await cursor.toArray();
+//       res.send(result);
+//     });
+//     // user patch
+//     app.patch(
+//       "/users/:id/role",
+//       verifyFBtoken,
+//       verifayAdmin,
+//       async (req, res) => {
+//         const id = req.params.id;
+//         const roleInfo = req.body;
+//         const query = { _id: new ObjectId(id) };
+//         const updateDoc = {
+//           $set: {
+//             role: roleInfo.role,
+//           },
+//         };
+//         const result = await userCollection.updateOne(query, updateDoc);
+//         res.send(result);
+//       }
+//     );
+//     // user role
+//     app.get("/users/:email/role", async (req, res) => {
+//       const email = req.params.email;
+//       const query = { email };
+//       const user = await userCollection.findOne(query);
+//       res.send({ role: user?.role || "user" });
+//     });
 //     // manager api
 //     app.post("/managers", async (req, res) => {
 //       const manager = req.body;
@@ -79,6 +120,7 @@
 //       const result = await managerCollection.insertOne(manager);
 //       res.send(result);
 //     });
+
 //     // managet get
 //     app.get("/managers", async (req, res) => {
 //       const query = {};
@@ -108,31 +150,36 @@
 //       }
 //     });
 //     // manager patch
-//     app.patch("/managers/:id", verifyFBtoken, async (req, res) => {
-//       const status = req.body.status;
-//       const id = req.params.id;
-//       const query = { _id: new ObjectId(id) };
-//       const updateDoc = {
-//         $set: {
-//           status: status,
-//         },
-//       };
-//       const result = await managerCollection.updateOne(query, updateDoc);
-//       if (status === "approved") {
-//         const email = req.body.email;
-//         const userQuary = { email };
-//         const updateUser = {
+//     app.patch(
+//       "/managers/:id",
+//       verifyFBtoken,
+//       verifayAdmin,
+//       async (req, res) => {
+//         const status = req.body.status;
+//         const id = req.params.id;
+//         const query = { _id: new ObjectId(id) };
+//         const updateDoc = {
 //           $set: {
-//             role: "manager",
+//             status: status,
 //           },
 //         };
-//         const userResult = await userCollection.updateOne(
-//           userQuary,
-//           updateUser
-//         );
+//         const result = await managerCollection.updateOne(query, updateDoc);
+//         if (status === "approved") {
+//           const email = req.body.email;
+//           const userQuary = { email };
+//           const updateUser = {
+//             $set: {
+//               role: "manager",
+//             },
+//           };
+//           const userResult = await userCollection.updateOne(
+//             userQuary,
+//             updateUser
+//           );
+//         }
+//         res.send(result);
 //       }
-//       res.send(result);
-//     });
+//     );
 //     // club api
 //     app.get("/club", async (req, res) => {
 //       const email = req.query.email;

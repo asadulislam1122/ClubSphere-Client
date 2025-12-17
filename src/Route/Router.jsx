@@ -16,6 +16,8 @@ import PaymentCencel from "../Layout/Dashboard/Payment/PaymentCencel";
 import PaymentHistry from "../Layout/Dashboard/Payment/PaymentHistry";
 import Manager from "../Pages/Manager/Manager";
 import ApproveManager from "../Pages/Dashboard/ApproveManager";
+import UsersManagment from "../Pages/Dashboard/UsersManagment";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -101,7 +103,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "approve-manager",
-        Component: ApproveManager,
+        element: (
+          <AdminRoute>
+            <ApproveManager></ApproveManager>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "users-managment",
+        element: (
+          <AdminRoute>
+            <UsersManagment></UsersManagment>
+          </AdminRoute>
+        ),
       },
     ],
   },

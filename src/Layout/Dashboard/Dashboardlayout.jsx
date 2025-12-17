@@ -1,11 +1,13 @@
 import React from "react";
-import { FaCcDinersClub } from "react-icons/fa";
+import { FaCcDinersClub, FaUser } from "react-icons/fa";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import { GrUserManager } from "react-icons/gr";
 import { Link, Outlet } from "react-router";
 import { IoIosCreate, IoMdHome } from "react-icons/io";
 import Logo from "../../Components/Logo";
+import useRole from "../../Hooks/useRole";
 const Dashboardlayout = () => {
+  const { role } = useRole();
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -101,6 +103,39 @@ const Dashboardlayout = () => {
                 <span className="is-drawer-close:hidden">Create Club</span>
               </Link>
             </li>
+            {role === "admin" && (
+              <>
+                {/* Approve manager */}
+                <li>
+                  <Link
+                    to={"/dashboard/approve-manager"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Approve Manager"
+                  >
+                    {/*  manager icon */}
+                    <GrUserManager />
+                    <span className="is-drawer-close:hidden">
+                      Approve Manager
+                    </span>
+                  </Link>
+                </li>
+                {/* Users managment */}
+                <li>
+                  <Link
+                    to={"/dashboard/users-managment"}
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Users Managment"
+                  >
+                    {/*   Users Managment icon*/}
+                    <FaUser></FaUser>
+                    <span className="is-drawer-close:hidden">
+                      Users Managment
+                    </span>
+                  </Link>
+                </li>
+              </>
+            )}
+
             {/* payment history */}
             <li>
               <Link
@@ -111,18 +146,6 @@ const Dashboardlayout = () => {
                 {/* payment icon */}
                 <RiSecurePaymentLine />
                 <span className="is-drawer-close:hidden">Payment History</span>
-              </Link>
-            </li>
-            {/* Approve manager */}
-            <li>
-              <Link
-                to={"/dashboard/approve-manager"}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Approve Manager"
-              >
-                {/*  manager icon */}
-                <GrUserManager />
-                <span className="is-drawer-close:hidden">Approve Manager</span>
               </Link>
             </li>
             {/* List item */}

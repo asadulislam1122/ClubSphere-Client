@@ -8,7 +8,7 @@ import CompaniName from "../Compani/CompaniName";
 import ReviwsData from "../ReviwsData/ReviwsData";
 import SpacialFeture from "../SpacialFeture/SpacialFeture";
 
-const reviwsPromissData = fetch("./ReviwsData.json").then((res) => res.json());
+const reviwsPromissData = fetch("/ReviwsData.json").then((res) => res.json());
 const Home = () => {
   return (
     <div>
