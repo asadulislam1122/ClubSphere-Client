@@ -40,6 +40,9 @@ const Navbar = () => {
           </li>
         </>
       )}
+      <li>
+        <NavLink to={"/manager"}>Be a Manager</NavLink>
+      </li>
     </>
   );
   return (
@@ -78,13 +81,14 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <img
-          className="w-10 h-10 rounded-full mr-2"
-          src={user?.photoURL}
-          referrerPolicy="no-referrer"
-          alt={user?.displayName || "User Photo"}
-        />
-
+        {user?.photoURL && (
+          <img
+            className="w-10 h-10 rounded-full mr-2 object-cover"
+            src={user.photoURL}
+            referrerPolicy="no-referrer"
+            alt={user?.displayName || "User Photo"}
+          />
+        )}
         {user ? (
           <a onClick={handleSignOut} className="btn bg-primary text-white">
             Log Out

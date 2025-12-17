@@ -3,22 +3,28 @@ import React from "react";
 import useAuth from "../../Hooks/useAuth";
 import { Navigate, useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const SosialLogin = () => {
   const navigate = useNavigate();
   const { signInGoogle } = useAuth();
+  const axiosSecure = useAxiosSecure();
   const handleGoogleButton = () => {
     signInGoogle()
       .then((result) => {
         console.log(result.user);
         toast.success("Google Login Sucessfull !");
-        navigate("/");
+
         // create user in the database
-        // const userInfo = {
-        //   email: data.email,
-        //   displayName: data.name,
-        //   photoURL: photoURL,
-        // };
+        const userInfo = {
+          email: result.user.email,
+          displayName: result.user.displayName,
+          photoURL: result.user.photoURL,
+        };
+        axiosSecure.post("/users", userInfo).then((res) => {
+          console.log("user data has been store", res.data);
+          navigate("/");
+        });
       })
       .catch((err) => {
         console.log(err);

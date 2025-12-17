@@ -14,6 +14,8 @@ import Payment from "../Layout/Dashboard/Payment/Payment";
 import PaymentSuccessful from "../Layout/Dashboard/Payment/PaymentSuccessful";
 import PaymentCencel from "../Layout/Dashboard/Payment/PaymentCencel";
 import PaymentHistry from "../Layout/Dashboard/Payment/PaymentHistry";
+import Manager from "../Pages/Manager/Manager";
+import ApproveManager from "../Pages/Dashboard/ApproveManager";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "/manager",
+        element: (
+          <PrivateRoute>
+            <Manager></Manager>
+          </PrivateRoute>
+        ),
       },
       {
         path: "all-club",
@@ -88,6 +98,10 @@ export const router = createBrowserRouter([
       {
         path: "payment-history",
         Component: PaymentHistry,
+      },
+      {
+        path: "approve-manager",
+        Component: ApproveManager,
       },
     ],
   },
