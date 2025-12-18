@@ -1,17 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { FaUserShield, FaUserSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const UsersManagement = () => {
   const [selectedUser, setSelectedUser] = React.useState(null);
-  // বানান ঠিক করা হয়েছে
+  const [searchText, setSearchText] = useState("");
   const axiosSecure = useAxiosSecure();
+
   const { data: users = [], refetch } = useQuery({
-    queryKey: ["users"],
+    // queryKey-তে searchText দিলে ইনপুট পরিবর্তনের সাথে সাথে ডাটা আপডেট হবে
+    queryKey: ["users", searchText],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users`);
+      const res = await axiosSecure.get(`/users?searchText=${searchText}`);
       return res.data;
     },
   });
@@ -79,6 +81,36 @@ const UsersManagement = () => {
       <h2 className="font-semibold text-2xl text-primary text-center p-4">
         Users Management: {users.length}
       </h2>
+      <p className="text-center p-2">Search Text: {searchText}</p>
+      {/* search */}
+      <div className="text-center py-4">
+        <label className="input ">
+          <svg
+            className="h-[1em] opacity-50"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <g
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2.5"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <input
+            onChange={(e) => setSearchText(e.target.value)}
+            type="search"
+            required
+            placeholder="Search"
+          />
+        </label>
+        <button className="btn btn-primary ml-2">Search</button>
+      </div>
+      {/*  */}
       <div className="overflow-x-auto">
         <table className="table">
           <thead>

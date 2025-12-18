@@ -18,6 +18,10 @@ import Manager from "../Pages/Manager/Manager";
 import ApproveManager from "../Pages/Dashboard/ApproveManager";
 import UsersManagment from "../Pages/Dashboard/UsersManagment";
 import AdminRoute from "./AdminRoute";
+import AddEvent from "../Pages/Dashboard/AddEvent";
+import AllEvent from "../Pages/Event/AllEvent";
+import EventDetails from "../Pages/Event/EventDetails";
+import MyRegisteredEvents from "../Pages/Dashboard/MyRegisteredEvents";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +39,14 @@ export const router = createBrowserRouter([
             <Manager></Manager>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "events/:id",
+        Component: EventDetails,
+      },
+      {
+        path: "all-events",
+        Component: AllEvent,
       },
       {
         path: "all-club",
@@ -116,6 +128,14 @@ export const router = createBrowserRouter([
             <UsersManagment></UsersManagment>
           </AdminRoute>
         ),
+      },
+      {
+        path: "add-event",
+        Component: AddEvent,
+      },
+      {
+        path: "my-registered-events",
+        element: <MyRegisteredEvents />,
       },
     ],
   },

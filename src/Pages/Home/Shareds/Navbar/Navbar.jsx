@@ -30,7 +30,7 @@ const Navbar = () => {
       </li>
 
       <li>
-        <NavLink>Events</NavLink>
+        <NavLink to={"/all-events"}>All Events</NavLink>
       </li>
 
       {user && (

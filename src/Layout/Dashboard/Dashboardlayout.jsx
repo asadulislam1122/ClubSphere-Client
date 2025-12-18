@@ -1,8 +1,10 @@
 import React from "react";
+import { PiCashRegisterDuotone } from "react-icons/pi";
 import { FaCcDinersClub, FaUser } from "react-icons/fa";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import { GrUserManager } from "react-icons/gr";
-import { Link, Outlet } from "react-router";
+import { MdEventAvailable } from "react-icons/md";
+import { Link, NavLink, Outlet } from "react-router";
 import { IoIosCreate, IoMdHome } from "react-icons/io";
 import Logo from "../../Components/Logo";
 import useRole from "../../Hooks/useRole";
@@ -91,6 +93,21 @@ const Dashboardlayout = () => {
                 <span className="is-drawer-close:hidden">My Clubs</span>
               </Link>
             </li>
+            {/* my-registered-events */}
+            <li>
+              <Link
+                to={"/dashboard/my-registered-events"}
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="My Registered Events"
+              >
+                {/* create icon */}
+                <PiCashRegisterDuotone />
+                <span className="is-drawer-close:hidden">
+                  My Registered Events
+                </span>
+              </Link>
+            </li>
+
             {/* create club */}
             <li>
               <Link
@@ -101,6 +118,18 @@ const Dashboardlayout = () => {
                 {/* create icon */}
                 <IoIosCreate></IoIosCreate>
                 <span className="is-drawer-close:hidden">Create Club</span>
+              </Link>
+            </li>
+            {/* add event */}
+            <li>
+              <Link
+                to={"/dashboard/add-event"}
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Add Event"
+              >
+                {/* add icon */}
+                <MdEventAvailable />
+                <span className="is-drawer-close:hidden">Add Event</span>
               </Link>
             </li>
             {role === "admin" && (
