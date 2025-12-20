@@ -4,7 +4,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
 const ManageEvents = () => {
-  const { user } = useAuth(); // লগইন করা ইউজার
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const {
@@ -14,11 +14,10 @@ const ManageEvents = () => {
   } = useQuery({
     queryKey: ["manager-events", user?.email],
     queryFn: async () => {
-      // ইউআরএল এ ইমেইলটি কোয়েরি হিসেবে পাঠানো হচ্ছে
       const res = await axiosSecure.get(`/manageEvents?email=${user?.email}`);
       return res.data;
     },
-    enabled: !!user?.email, // ইমেইল না পাওয়া পর্যন্ত কুয়েরি চলবে না
+    enabled: !!user?.email,
   });
 
   if (isLoading)
@@ -35,7 +34,7 @@ const ManageEvents = () => {
       if (result.isConfirmed) {
         const res = await axiosSecure.delete(`/events/${id}`);
         if (res.data.deletedCount > 0) {
-          refetch(); // ডাটা আপডেট করার জন্য
+          refetch();
           Swal.fire("Deleted!", "Event has been removed.", "success");
         }
       }
@@ -70,6 +69,7 @@ const ManageEvents = () => {
   };
   return (
     <div className="p-6">
+      <title>Dashboard-Manage-Events</title>
       <h2 className="text-2xl font-bold mb-6">
         Manage My Events ({events.length})
       </h2>
@@ -86,7 +86,6 @@ const ManageEvents = () => {
               <p className="text-sm text-gray-500">Date: {event.eventDate}</p>
             </div>
             <div className="flex gap-2">
-              {/* এখানে এডিট এবং ডিলিট বাটন থাকবে */}
               <button
                 onClick={() => handleEdit(event)}
                 className="btn btn-sm btn-info text-white"

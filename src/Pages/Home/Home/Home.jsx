@@ -13,6 +13,7 @@ const reviwsPromissData = fetch("/ReviwsData.json").then((res) => res.json());
 const Home = () => {
   return (
     <div>
+      <title>ClubSphere-App-Home-Page</title>
       <nav>
         <Banner></Banner>
       </nav>

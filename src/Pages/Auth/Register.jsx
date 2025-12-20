@@ -75,6 +75,7 @@ const Register = () => {
       className="min-h-screen flex items-center justify-center 
       px-4"
     >
+      <title>ClubSphere-Register-Page</title>
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden">
         {/* Header */}
         <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-6 text-center">

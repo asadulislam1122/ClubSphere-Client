@@ -27,6 +27,7 @@ const MyRegisteredEvents = () => {
 
   return (
     <div className="p-6">
+      <title>My-Registered-Events</title>
       <h2 className="text-3xl font-bold mb-6 text-center">
         My Registered Events
       </h2>

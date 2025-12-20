@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 const Manager = () => {
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth(); // User info থেকে photoURL এবং অন্যান্য তথ্য নিচ্ছি
+  const { user } = useAuth();
   const {
     register,
     handleSubmit,
@@ -14,13 +14,11 @@ const Manager = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    // ফর্মের ডাটার সাথে ইউজারের ছবি যুক্ত করে দিচ্ছি
     const managerData = {
       ...data,
-      photo: user?.photoURL, // ইউজারের লগইন করা ছবি
+      photo: user?.photoURL,
     };
 
-    // 🔽 কনসোলে সম্পূর্ণ ডাটা দেখাবে
     console.log("Manager Application Data:", managerData);
     // manager db create
     axiosSecure.post("/managers", managerData).then((res) => {
@@ -38,6 +36,7 @@ const Manager = () => {
 
   return (
     <div className="max-w-xl mb-22 mx-auto p-6 border rounded-lg shadow-lg mt-10 bg-white">
+      <title>Be-A-Manager</title>
       <h2 className="text-3xl font-bold mb-6 text-center text-blue-600">
         Be A Manager
       </h2>
@@ -80,7 +79,7 @@ const Manager = () => {
           <input
             type="email"
             defaultValue={user?.email}
-            readOnly // ইমেইল সাধারণত পরিবর্তন করা যায় না, তাই readOnly রাখতে পারেন (অপশনাল)
+            readOnly
             placeholder="Your Email"
             {...register("email", {
               required: "Email is required",

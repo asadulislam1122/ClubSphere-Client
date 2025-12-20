@@ -17,6 +17,7 @@ const AllPayments = () => {
 
   return (
     <div className="p-10">
+      <title>Dashboard-Payment-Overview</title>
       <h2 className="text-3xl font-bold mb-6">Payment Overview</h2>
 
       {/* Summary Card */}

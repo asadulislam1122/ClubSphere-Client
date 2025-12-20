@@ -12,6 +12,7 @@ const AllClub = () => {
 
   return (
     <div className="bg-[#f8fafc] min-h-screen p-4 md:p-10">
+      <title>All-Club-Page</title>
       {/* Header with Glass Effect */}
       <div className="max-w-[1400px] mx-auto mb-16 text-center">
         <span className="text-blue-600 font-bold tracking-widest uppercase text-sm bg-blue-50 px-4 py-2 rounded-full">

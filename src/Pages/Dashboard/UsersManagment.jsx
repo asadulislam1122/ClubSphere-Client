@@ -10,7 +10,6 @@ const UsersManagement = () => {
   const axiosSecure = useAxiosSecure();
 
   const { data: users = [], refetch } = useQuery({
-    // queryKey-তে searchText দিলে ইনপুট পরিবর্তনের সাথে সাথে ডাটা আপডেট হবে
     queryKey: ["users", searchText],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users?searchText=${searchText}`);
@@ -78,6 +77,7 @@ const UsersManagement = () => {
 
   return (
     <div>
+      <title>Dashboard-User-Managment</title>
       <h2 className="font-semibold text-2xl text-primary text-center p-4">
         Users Management: {users.length}
       </h2>
@@ -235,7 +235,6 @@ const UsersManagement = () => {
           )}
           <div className="modal-action">
             <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
                 ✕
               </button>
@@ -249,125 +248,3 @@ const UsersManagement = () => {
 };
 
 export default UsersManagement;
-
-// import { useQuery } from "@tanstack/react-query";
-// import React from "react";
-// import useAxiosSecure from "../../Hooks/useAxiosSecure";
-// import { FaUserShield, FaUserSlash } from "react-icons/fa";
-// import Swal from "sweetalert2";
-
-// const UsersManagment = () => {
-//   const axiosSecure = useAxiosSecure();
-//   const { data: users = [], refetch } = useQuery({
-//     queryKey: ["users"],
-//     queryFn: async () => {
-//       const res = await axiosSecure.get(`/users`);
-//       return res.data;
-//     },
-//   });
-//   //   console.log(users);
-
-//   const handleMakeUser = (user) => {
-//     const roleInfo = { role: "admin" };
-//     axiosSecure.patch(`/users/${user._id}`, roleInfo).then((res) => {
-//       console.log(res.data);
-//       if (res.data.modifiedCount) {
-//         refetch();
-//         Swal.fire({
-//           position: "top-end",
-//           icon: "success",
-//           title: `${user.displayName} marked as an Admin`,
-//           showConfirmButton: false,
-//           timer: 1500,
-//         });
-//       }
-//     });
-//   };
-//   // remove
-//   const handleRemoveAdmin = (user) => {
-//     const roleInfo = { role: "user" };
-//     axiosSecure.patch(`/users/${user._id}`, roleInfo).then((res) => {
-//       console.log(res.data);
-//       if (res.data.modifiedCount) {
-//         refetch();
-//         Swal.fire({
-//           position: "top-end",
-//           icon: "success",
-//           title: `${user.displayName} removed from  Admin`,
-//           showConfirmButton: false,
-//           timer: 1500,
-//         });
-//       }
-//     });
-//   };
-//   return (
-//     <div>
-//       <h2 className="font-semibold text-2xl text-primary text-center p-4">
-//         Users Managment:{users.length}
-//       </h2>
-//       <div className="overflow-x-auto">
-//         <table className="table">
-//           {/* head */}
-//           <thead>
-//             <tr>
-//               <th>No</th>
-//               <th>Photo & Name</th>
-//               <th>Email</th>
-//               <th>User Role</th>
-//               <th>Date</th>
-//               <th>Admin Action</th>
-//               <th> Other Acction</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {users.map((user, i) => (
-//               <tr key={user._id}>
-//                 <th>{i + 1}</th>
-//                 <td>
-//                   <div className="flex items-center gap-3">
-//                     <div className="avatar">
-//                       <div className="mask mask-squircle h-12 w-12">
-//                         <img
-//                           src={user?.photoURL || "default-avatar-link.png"}
-//                           referrerPolicy="no-referrer"
-//                           alt={user?.displayName || "User"}
-//                           className="w-10 h-10 rounded-full" // স্টাইল যোগ করার জন্য
-//                         />
-//                       </div>
-//                     </div>
-//                     <div>
-//                       <div className="font-bold">{user.displayName}</div>
-//                     </div>
-//                   </div>
-//                 </td>
-//                 <td>{user.email}</td>
-//                 <td>{user.role}</td>
-//                 <td>{new Date(user.createdAt).toLocaleString()}</td>
-//                 <td>
-//                   {user.role === "admin" ? (
-//                     <button
-//                       onClick={() => handleRemoveAdmin(user)}
-//                       className="btn bg-red-500 hover:btn-error"
-//                     >
-//                       <FaUserSlash />
-//                     </button>
-//                   ) : (
-//                     <button
-//                       onClick={() => handleMakeUser(user)}
-//                       className="btn bg-green-500 hover:btn-primary"
-//                     >
-//                       <FaUserShield />
-//                     </button>
-//                   )}
-//                 </td>
-//                 <td>Acttion</td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default UsersManagment;

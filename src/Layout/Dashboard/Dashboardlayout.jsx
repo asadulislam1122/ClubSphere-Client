@@ -17,6 +17,7 @@ const Dashboardlayout = () => {
   const { role } = useRole();
   return (
     <div className="drawer lg:drawer-open">
+      <title>Dashboard</title>;
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {/* Navbar */}
@@ -49,7 +50,6 @@ const Dashboardlayout = () => {
         {/* Page content here */}
         <Outlet></Outlet>
       </div>
-
       <div className="drawer-side is-drawer-close:overflow-visible">
         <label
           htmlFor="my-drawer-4"

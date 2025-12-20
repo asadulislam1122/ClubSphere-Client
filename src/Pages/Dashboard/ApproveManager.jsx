@@ -37,11 +37,10 @@ const ApproveManager = () => {
     });
   };
 
-  //   approve manager
   const handleAprovel = (manager) => {
     updateManagerStatus(manager, "approved");
   };
-  // handle reject
+
   const handleReject = (manager) => {
     updateManagerStatus(manager, "rejected");
   };
@@ -63,7 +62,7 @@ const ApproveManager = () => {
               "Manager application has been deleted.",
               "success"
             );
-            // এখানে state update বা refetch() কল করবেন যাতে টেবিল থেকে ডাটা চলে যায়
+
             refetch();
           }
         });
@@ -72,6 +71,7 @@ const ApproveManager = () => {
   };
   return (
     <div>
+      <title>Dashboard-Approve-Manager</title>
       <h2 className="text-center p-4 text-primary font-semibold text-3xl ">
         Manager pending Approvel: ({managers.length})
       </h2>
@@ -100,8 +100,8 @@ const ApproveManager = () => {
                         <img
                           src={
                             manager?.photo || "https://via.placeholder.com/150"
-                          } // ছবি না থাকলে একটা ডিফল্ট ছবি দেখাবে
-                          referrerPolicy="no-referrer" // ✅ বানান সংশোধন: "no-referrer"
+                          }
+                          referrerPolicy="no-referrer"
                           alt="Manager Photo"
                         />
                       </div>
@@ -118,10 +118,10 @@ const ApproveManager = () => {
                     <p
                       className={`font-bold capitalize ${
                         manager.status === "approved"
-                          ? "text-green-600" // Approved হলে নীল
+                          ? "text-green-600"
                           : manager.status === "pending"
-                          ? "text-fuchsia-500" // Pending হলে সবুজ
-                          : "text-red-600" // Rejected হলে লাল
+                          ? "text-fuchsia-500"
+                          : "text-red-600"
                       }`}
                     >
                       {manager.status}

@@ -33,11 +33,10 @@ const ManageEvents = () => {
     enabled: !!user?.email,
   });
 
-  // চার্টের জন্য ডেটা তৈরি করা (টপ ৫টি ইভেন্ট ফি অনুযায়ী)
   const chartData = events.slice(0, 5).map((ev) => ({
     name: ev.title.substring(0, 10) + "...",
     fee: ev.eventFee || 0,
-    count: ev.participantCount || Math.floor(Math.random() * 50) + 10, // ডামি বা আসল কাউন্ট
+    count: ev.participantCount || Math.floor(Math.random() * 50) + 10,
   }));
 
   if (isLoading)
@@ -47,7 +46,6 @@ const ManageEvents = () => {
       </div>
     );
 
-  // handleDelete এবং handleEdit ফাংশন আগের মতোই থাকবে...
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",

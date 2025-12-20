@@ -15,7 +15,6 @@ const AddEvent = () => {
     formState: { errors },
   } = useForm();
 
-  // ১. ম্যানেজারের নিজস্ব ক্লাবগুলো ড্রপডাউনে দেখানোর জন্য ফেচ করা
   const { data: myClubs = [] } = useQuery({
     queryKey: ["myClubs", user?.email],
     queryFn: async () => {
@@ -24,7 +23,6 @@ const AddEvent = () => {
     },
   });
 
-  // ২. ইভেন্ট পোস্ট করার জন্য মিউটেশন (Backend API: app.post("/events"))
   const { mutateAsync } = useMutation({
     mutationFn: async (eventData) => {
       const res = await axiosSecure.post("/events", eventData);
@@ -66,13 +64,13 @@ const AddEvent = () => {
 
   return (
     <div className="p-6 md:p-12 bg-gray-50 min-h-screen">
+      <title>Dashboard-Add-Event</title>
       <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
         <h2 className="text-3xl font-bold text-center text-primary mb-8">
           🎉 Create New Event
         </h2>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          {/* ক্লাব সিলেক্ট ড্রপডাউন */}
           <div className="form-control">
             <label className="label font-semibold">Select Club</label>
             <select
@@ -95,7 +93,6 @@ const AddEvent = () => {
             )}
           </div>
 
-          {/* ইভেন্ট টাইটেল */}
           <div className="form-control">
             <label className="label font-semibold">Event Title</label>
             <input
@@ -107,7 +104,6 @@ const AddEvent = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* ইভেন্ট তারিখ */}
             <div className="form-control">
               <label className="label font-semibold">Event Date</label>
               <input
@@ -117,7 +113,6 @@ const AddEvent = () => {
               />
             </div>
 
-            {/* লোকেশন */}
             <div className="form-control">
               <label className="label font-semibold">Location</label>
               <input
@@ -130,7 +125,6 @@ const AddEvent = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* ইভেন্ট ফি */}
             <div className="form-control">
               <label className="label font-semibold">Event Fee ($)</label>
               <input
@@ -142,7 +136,6 @@ const AddEvent = () => {
               />
             </div>
 
-            {/* ম্যাক্স মেম্বার */}
             <div className="form-control">
               <label className="label font-semibold">Max Attendees</label>
               <input
@@ -154,7 +147,6 @@ const AddEvent = () => {
             </div>
           </div>
 
-          {/* ডেসক্রিপশন */}
           <div className="form-control">
             <label className="label font-semibold">Event Description</label>
             <textarea

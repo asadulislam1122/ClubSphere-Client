@@ -66,12 +66,10 @@ const AdminDashboard = () => {
             Active Users
           </div>
           <div className="stat-value text-accent">--</div>{" "}
-          {/* আপনার API থেকে আসলে বসাবেন */}
           <div className="stat-desc">Users with payments</div>
         </div>
       </div>
 
-      {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
         <div className="bg-white p-6 rounded-xl shadow-md">
           <h3 className="text-lg font-semibold mb-4 text-gray-700">
