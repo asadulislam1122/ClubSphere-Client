@@ -39,7 +39,8 @@ const Banner = () => {
   };
 
   return (
-    <div className="relative h-screen bg-gray-900 overflow-hidden z-0">
+    // h-[100dvh] মোবাইল ব্রাউজারের অ্যাড্রেস বারের ঝামেলা দূর করে
+    <div className="relative h-screen min-h-[500px] lg:h-screen bg-gray-900 overflow-hidden z-0">
       {/* Background image layer */}
       <div
         className="absolute inset-0 bg-cover bg-center transition-opacity duration-700 z-0"
@@ -47,43 +48,44 @@ const Banner = () => {
           backgroundImage: `url(${bannerBg || "/placeholder-ship.jpg"})`,
         }}
       >
-        <div className="absolute inset-0 bg-black opacity-60 z-0"></div>
+        <div className="absolute inset-0 bg-black/60 z-0"></div>
       </div>
 
       {/* Main content */}
       <motion.div
-        className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4"
+        className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-6" // প্যাডিং একটু বাড়ানো হয়েছে
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <motion.p
-          className="text-sm tracking-widest uppercase font-medium mb-4"
+          className="text-xs md:text-sm tracking-widest uppercase font-medium mb-4"
           variants={itemVariants}
         >
           WELCOME TO OUR COMMUNITY
         </motion.p>
 
         <motion.h1
-          className="text-4xl md:text-6xl font-extrabold mb-6 max-w-4xl leading-tight"
+          // মোবাইলের জন্য text-3xl বা text-4xl রাখা ভালো
+          className="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-6 max-w-4xl leading-[1.1]"
           variants={headlineVariants}
         >
           THE ULTIMATE <span className="text-red-600">CLUB EXPERIENCE</span>
         </motion.h1>
 
         <motion.p
-          className="text-base md:text-lg max-w-3xl mb-10 font-light text-gray-200"
+          className="text-sm md:text-lg max-w-2xl mb-10 font-light text-gray-200"
           variants={itemVariants}
         >
           Join our club to explore events, connect with members, build skills,
           and enjoy a vibrant community where everyone grows together.
         </motion.p>
 
-        <Link to={"all-club"}>
-          {" "}
+        <Link to={"all-club"} className="w-full sm:w-auto flex justify-center">
           <motion.button
-            className="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-6 py-3 sm:py-4 rounded-lg transition w-full sm:w-auto"
+            className="bg-pink-500 hover:bg-pink-600 text-white font-semibold px-8 py-3.5 rounded-lg transition-all duration-300 w-full sm:w-64"
             variants={buttonVariants}
+            whileTap={{ scale: 0.95 }} // মোবাইলে ক্লিক করার সময় একটা ছোট ইফেক্ট
           >
             JOIN THE CLUB
           </motion.button>

@@ -10,10 +10,10 @@ import Dashboardlayout from "../Layout/Dashboard/Dashboardlayout";
 import MyClub from "../Pages/Dashboard/MyClub";
 import AllClub from "../Components/Club/AllClub";
 import ClubDetails from "../Components/Club/ClubDetails";
-import Payment from "../Layout/Dashboard/Payment/Payment";
+// import Payment from "../Layout/Dashboard/Payment/Payment";
 import PaymentSuccessful from "../Layout/Dashboard/Payment/PaymentSuccessful";
 import PaymentCencel from "../Layout/Dashboard/Payment/PaymentCencel";
-import PaymentHistry from "../Layout/Dashboard/Payment/PaymentHistry";
+// import PaymentHistry from "../Layout/Dashboard/Payment/PaymentHistry";
 import Manager from "../Pages/Manager/Manager";
 import ApproveManager from "../Pages/Dashboard/ApproveManager";
 import UsersManagment from "../Pages/Dashboard/UsersManagment";
@@ -22,6 +22,11 @@ import AddEvent from "../Pages/Dashboard/AddEvent";
 import AllEvent from "../Pages/Event/AllEvent";
 import EventDetails from "../Pages/Event/EventDetails";
 import MyRegisteredEvents from "../Pages/Dashboard/MyRegisteredEvents";
+import ManageEvents from "../Pages/Dashboard/ManageEvents";
+// import AdminHome from "../Pages/Dashboard/AdminHome";
+import AllPayments from "../Pages/Dashboard/AllPayments";
+import ManagerRoute from "./ManagerRoute";
+import DashboardHome from "../Pages/Dashboard/DashboardHome";
 
 export const router = createBrowserRouter([
   {
@@ -52,7 +57,7 @@ export const router = createBrowserRouter([
         path: "all-club",
         element: <AllClub />, // Component → element
         loader: async () => {
-          const res = await fetch("http://localhost:3000/club");
+          const res = await fetch("https://clubshapare-server.vercel.app/club");
           return res.json();
         },
       },
@@ -60,7 +65,9 @@ export const router = createBrowserRouter([
         path: "club/:id",
         element: <ClubDetails />,
         loader: async ({ params }) => {
-          const res = await fetch(`http://localhost:3000/club/${params.id}`);
+          const res = await fetch(
+            `https://clubshapare-server.vercel.app/club/${params.id}`
+          );
           return res.json();
         },
       },
@@ -86,21 +93,30 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
+        index: true,
+        Component: DashboardHome,
+      },
+      {
         path: "my-club",
-        Component: MyClub,
+        element: (
+          <ManagerRoute>
+            <MyClub></MyClub>
+          </ManagerRoute>
+        ),
       },
       {
         path: "club",
         element: (
-          <PrivateRoute>
+          <ManagerRoute>
+            {" "}
             <Club></Club>
-          </PrivateRoute>
+          </ManagerRoute>
         ),
       },
-      {
-        path: "payment/:clubId",
-        Component: Payment,
-      },
+      // {
+      //   path: "payment/:clubId",
+      //   Component: Payment,
+      // },
       {
         path: "payment-success",
         Component: PaymentSuccessful,
@@ -109,10 +125,10 @@ export const router = createBrowserRouter([
         path: "payment-canceled",
         Component: PaymentCencel,
       },
-      {
-        path: "payment-history",
-        Component: PaymentHistry,
-      },
+      // {
+      //   path: "payment-history",
+      //   Component: PaymentHistry,
+      // },
       {
         path: "approve-manager",
         element: (
@@ -131,11 +147,40 @@ export const router = createBrowserRouter([
       },
       {
         path: "add-event",
-        Component: AddEvent,
+        element: (
+          <ManagerRoute>
+            <AddEvent></AddEvent>
+          </ManagerRoute>
+        ),
       },
       {
         path: "my-registered-events",
         element: <MyRegisteredEvents />,
+      },
+      {
+        path: "manage-events",
+        // element: <ManageEvents></ManageEvents>,
+        element: (
+          <ManagerRoute>
+            <ManageEvents></ManageEvents>
+          </ManagerRoute>
+        ),
+      },
+      // {
+      //   path: "admin-home", // বা আপনার পছন্দমতো নাম
+      //   element: (
+      //     <AdminRoute>
+      //       <AdminHome />
+      //     </AdminRoute>
+      //   ),
+      // },
+      {
+        path: "all-payments",
+        element: (
+          <AdminRoute>
+            <AllPayments />
+          </AdminRoute>
+        ),
       },
     ],
   },

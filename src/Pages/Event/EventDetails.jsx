@@ -98,6 +98,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { FaArrowRight } from "react-icons/fa";
 
 const EventDetails = () => {
   const { id } = useParams();
@@ -206,12 +207,30 @@ const EventDetails = () => {
           </p>
         </div>
 
-        <button
+        {/* <button
           onClick={handleRegister}
           className="btn btn-primary btn-lg px-10"
           disabled={!user}
         >
           {event.eventFee > 0 ? "Pay & Register" : "Register Now"}
+        </button> */}
+        <button
+          onClick={handleRegister}
+          disabled={!user}
+          className="group relative flex items-center gap-4 bg-slate-900 hover:bg-blue-600 disabled:bg-gray-200 text-white py-3 px-6 rounded-xl transition-all duration-300 overflow-hidden"
+        >
+          <span className="font-bold text-sm z-10">
+            {event.eventFee > 0 ? "Pay & Register" : "Register Now"}
+          </span>
+
+          <div className="bg-white/20 p-1.5 rounded-lg z-10">
+            <FaArrowRight className="text-[10px] group-hover:translate-x-1 transition-transform" />
+          </div>
+
+          {/* Background Circle Animation */}
+          {user && (
+            <div className="absolute top-0 right-0 w-12 h-12 bg-white/10 rounded-full -mr-6 -mt-6 transition-all duration-500 group-hover:scale-[8]" />
+          )}
         </button>
       </div>
       {!user && (

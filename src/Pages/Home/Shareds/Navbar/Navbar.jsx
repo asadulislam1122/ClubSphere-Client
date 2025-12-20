@@ -3,9 +3,11 @@ import Logo from "../../../../Components/Logo";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../../../Hooks/useAuth";
 import { toast } from "react-toastify";
-
+import useRole from "../../../../Hooks/useRole";
+import "./navbar.css";
 const Navbar = () => {
   const { user, signOute } = useAuth();
+  const { role } = useRole();
 
   const handleSignOut = () => {
     signOute()
@@ -32,14 +34,18 @@ const Navbar = () => {
       <li>
         <NavLink to={"/all-events"}>All Events</NavLink>
       </li>
+      <li>
+        <NavLink to={"/dashboard"}>Dashboard</NavLink>
+      </li>
 
-      {user && (
+      {role === "manager" && (
         <>
           <li>
             <NavLink to={"/dashboard/my-club"}>My Club</NavLink>
           </li>
         </>
       )}
+      {user && <></>}
       <li>
         <NavLink to={"/manager"}>Be a Manager</NavLink>
       </li>
@@ -73,9 +79,9 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <NavLink to={"/"}>
+        <Link to={"/"}>
           <Logo></Logo>
-        </NavLink>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>

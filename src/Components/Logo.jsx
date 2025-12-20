@@ -7,7 +7,7 @@ const Logo = () => {
         src="https://img.icons8.com/pulsar-gradient/48/disco-ball.png"
         alt="Photography Club Logo"
       />
-      <h2 className="font-bold md:text-2xl text-green-600">Photography Club</h2>
+      <h2 className="font-bold md:text-2xl text-green-600">ClubSphere</h2>
     </div>
   );
 };

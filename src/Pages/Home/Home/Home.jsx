@@ -7,17 +7,23 @@ import ClubFeatures from "../ClubFeatures/ClubFeatures";
 import CompaniName from "../Compani/CompaniName";
 import ReviwsData from "../ReviwsData/ReviwsData";
 import SpacialFeture from "../SpacialFeture/SpacialFeture";
+import HoomClub from "../HoomClub";
 
 const reviwsPromissData = fetch("/ReviwsData.json").then((res) => res.json());
 const Home = () => {
   return (
     <div>
-      <Banner></Banner>
+      <nav>
+        <Banner></Banner>
+      </nav>
       <section className="w-11/12 mx-auto">
         <ClubInfoSection></ClubInfoSection>
       </section>
       <section className="w-11/12 mx-auto">
         <ClubFeatures></ClubFeatures>
+      </section>
+      <section className="w-11/12 mx-auto">
+        <HoomClub></HoomClub>
       </section>
       <section className="w-10/12 mx-auto">
         <CompaniName></CompaniName>

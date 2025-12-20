@@ -119,6 +119,7 @@ import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useSearchParams } from "react-router-dom"; // ১. useSearchParams ইম্পোর্ট করুন
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { FaArrowRight } from "react-icons/fa";
 
 const AllEvent = () => {
   const axiosSecure = useAxiosSecure();
@@ -220,12 +221,31 @@ const AllEvent = () => {
                     </p>
                   </div>
 
-                  <div className="card-actions justify-end mt-6">
+                  {/* <div className="card-actions justify-end mt-6">
                     <Link
                       to={`/events/${event._id}`}
                       className="btn btn-primary btn-outline w-full"
                     >
                       View Details
+                    </Link>
+                  </div> */}
+                  <div className="card-actions mt-6">
+                    <Link
+                      to={`/events/${event._id}`}
+                      className="group relative flex items-center justify-between w-full bg-slate-900 hover:bg-blue-600 text-white p-4 rounded-xl transition-all duration-500 overflow-hidden shadow-lg shadow-slate-200"
+                    >
+                      {/* Button Text */}
+                      <span className="font-bold text-sm z-10 transition-colors duration-300">
+                        View Details
+                      </span>
+
+                      {/* Icon with Glass Effect */}
+                      <div className="bg-white/20 p-1.5 rounded-lg z-10">
+                        <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform duration-300" />
+                      </div>
+
+                      {/* Background Animation Circle (Modern Effect) */}
+                      <div className="absolute top-0 right-0 w-16 h-16 bg-white/10 rounded-full -mr-8 -mt-8 transition-all duration-500 group-hover:scale-[7] pointer-events-none" />
                     </Link>
                   </div>
                 </div>

@@ -228,6 +228,7 @@ const Club = () => {
           <option value="Sports">Sports</option>
           <option value="Tech">Tech</option>
           <option value="Book Club">Book Club</option>
+          <option value="Book Club">Song Club</option>
         </select>
         {errors.category && (
           <p className="text-red-500 text-sm">{errors.category.message}</p>
@@ -272,7 +273,7 @@ const Club = () => {
           type="submit"
           className="w-full py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold rounded-lg hover:opacity-90 transition"
         >
-          Create Club
+          Create
         </button>
       </form>
     </div>
