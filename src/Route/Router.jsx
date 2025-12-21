@@ -44,7 +44,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "events/:id",
-        Component: EventDetails,
+
+        element: (
+          <PrivateRoute>
+            <EventDetails></EventDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "all-events",
@@ -60,7 +65,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "club/:id",
-        element: <ClubDetails />,
+        element: (
+          <PrivateRoute>
+            <ClubDetails />
+          </PrivateRoute>
+        ),
         loader: async ({ params }) => {
           const res = await fetch(
             `https://clubshapare-server.vercel.app/club/${params.id}`
