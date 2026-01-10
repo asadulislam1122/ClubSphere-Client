@@ -13,7 +13,7 @@ const AuthLayout = () => {
       <div className="flex flex-col md:flex-row items-center gap-10 mt-10">
         {/* Form Section */}
         <div className="flex-1 w-full">
-          <div className="bg-white p-8 shadow-xl rounded-2xl">
+          <div className=" p-8 shadow-xl rounded-2xl">
             <Outlet />
           </div>
         </div>

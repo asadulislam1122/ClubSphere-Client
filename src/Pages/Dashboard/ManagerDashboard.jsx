@@ -41,7 +41,7 @@ const ManageEvents = () => {
 
   if (isLoading)
     return (
-      <div className="flex justify-center p-20">
+      <div className="flex justify-center p-20 bg-base-200 min-h-screen">
         <span className="loading loading-dots loading-lg text-primary"></span>
       </div>
     );
@@ -53,7 +53,10 @@ const ManageEvents = () => {
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#EF4444",
+      cancelButtonColor: "#6B7280",
       confirmButtonText: "Yes, delete it!",
+      background: "var(--fallback-b1,oklch(var(--b1)))",
+      color: "var(--fallback-bc,oklch(var(--bc)))",
     }).then(async (result) => {
       if (result.isConfirmed) {
         const res = await axiosSecure.delete(`/events/${id}`);
@@ -68,10 +71,12 @@ const ManageEvents = () => {
   const handleEdit = async (event) => {
     const { value: formValues } = await Swal.fire({
       title: "Update Event",
+      background: "var(--fallback-b1,oklch(var(--b1)))",
+      color: "var(--fallback-bc,oklch(var(--bc)))",
       html:
-        `<input id="swal-input1" class="swal2-input" placeholder="Title" value="${event.title}">` +
-        `<input id="swal-input2" type="date" class="swal2-input" value="${event.eventDate}">` +
-        `<input id="swal-input3" class="swal2-input" placeholder="Location" value="${event.location}">`,
+        `<input id="swal-input1" class="swal2-input custom-swal-input" placeholder="Title" value="${event.title}">` +
+        `<input id="swal-input2" type="date" class="swal2-input custom-swal-input" value="${event.eventDate}">` +
+        `<input id="swal-input3" class="swal2-input custom-swal-input" placeholder="Location" value="${event.location}">`,
       focusConfirm: false,
       showCancelButton: true,
       preConfirm: () => {
@@ -93,52 +98,75 @@ const ManageEvents = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
-      <div className="flex items-center gap-3 mb-8">
-        <div className="p-3 bg-primary text-white rounded-lg shadow-lg">
-          <FaChartLine size={24} />
+    <div className="p-6 bg-base-200 min-h-screen transition-colors duration-500">
+      <div className="flex items-center gap-4 mb-10">
+        <div className="p-4 bg-primary text-primary-content rounded-2xl shadow-xl shadow-primary/20">
+          <FaChartLine size={28} />
         </div>
-        <h2 className="text-3xl font-bold text-gray-800">
-          Event Analytics & Management
-        </h2>
+        <div>
+          <h2 className="text-3xl font-black text-base-content tracking-tight">
+            Event Analytics
+          </h2>
+          <p className="text-base-content/50 text-sm font-medium">
+            Manage and track your club activities
+          </p>
+        </div>
       </div>
 
       {/* --- Chart Section --- */}
-      <div className="bg-white p-6 rounded-2xl shadow-sm border mb-10">
-        <h3 className="text-lg font-semibold mb-6 text-gray-600 italic">
-          Quick Insights: Fee vs Participation
+      <div className="bg-base-100 p-8 rounded-[2rem] shadow-xl border border-base-content/5 mb-12">
+        <h3 className="text-xs font-black mb-8 text-base-content/40 uppercase tracking-[0.2em]">
+          Performance: Fee vs Participation
         </h3>
-        <div className="h-72 w-full">
+        <div className="h-80 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart data={chartData}>
-              <CartesianGrid stroke="#f5f5f5" vertical={false} />
-              <XAxis dataKey="name" scale="point" tick={{ fontSize: 12 }} />
-              <YAxis tick={{ fontSize: 12 }} />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                vertical={false}
+                stroke="var(--fallback-bc,oklch(var(--bc)/0.1))"
+              />
+              <XAxis
+                dataKey="name"
+                tick={{ fontSize: 11, fill: "currentColor", opacity: 0.5 }}
+                axisLine={false}
+                tickLine={false}
+              />
+              <YAxis
+                tick={{ fontSize: 11, fill: "currentColor", opacity: 0.5 }}
+                axisLine={false}
+                tickLine={false}
+              />
               <Tooltip
                 contentStyle={{
-                  borderRadius: "10px",
-                  border: "none",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                  backgroundColor: "var(--fallback-b1,oklch(var(--b1)))",
+                  borderRadius: "16px",
+                  border: "1px solid var(--fallback-bc,oklch(var(--bc)/0.1))",
+                  boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1)",
+                  color: "var(--fallback-bc,oklch(var(--bc)))",
                 }}
+                itemStyle={{ color: "var(--fallback-bc,oklch(var(--bc)))" }}
               />
-              <Legend />
+              <Legend iconType="circle" />
               <Area
                 type="monotone"
                 dataKey="count"
-                fill="#E0E7FF"
-                stroke="#4F46E5"
+                fill="var(--fallback-p,oklch(var(--p)/0.2))"
+                stroke="var(--fallback-p,oklch(var(--p)))"
+                strokeWidth={3}
               />
               <Bar
                 dataKey="fee"
-                barSize={30}
+                barSize={25}
                 fill="#10B981"
-                radius={[5, 5, 0, 0]}
+                radius={[8, 8, 0, 0]}
               />
               <Line
                 type="monotone"
                 dataKey="fee"
                 stroke="#F59E0B"
-                strokeWidth={3}
+                strokeWidth={4}
+                dot={{ r: 4, fill: "#F59E0B" }}
               />
             </ComposedChart>
           </ResponsiveContainer>
@@ -146,53 +174,70 @@ const ManageEvents = () => {
       </div>
 
       {/* --- Event List Section --- */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {events.map((event) => (
           <div
             key={event._id}
-            className="group bg-white p-5 rounded-xl shadow-sm border hover:shadow-md transition-all duration-300"
+            className="group bg-base-100 p-6 rounded-[2rem] shadow-lg border border-base-content/5 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
           >
-            <div className="flex justify-between items-start mb-4">
-              <span className="badge badge-primary badge-outline text-xs uppercase font-bold tracking-wider">
+            <div className="flex justify-between items-start mb-6">
+              <span className="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest border border-primary/20">
                 {event.clubName}
               </span>
-              <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                 <button
                   onClick={() => handleEdit(event)}
-                  className="p-2 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-colors"
+                  className="p-2.5 bg-blue-500/10 text-blue-500 rounded-xl hover:bg-blue-500 hover:text-white transition-all"
                 >
-                  <FaEdit />
+                  <FaEdit size={14} />
                 </button>
                 <button
                   onClick={() => handleDelete(event._id)}
-                  className="p-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-600 hover:text-white transition-colors"
+                  className="p-2.5 bg-error/10 text-error rounded-xl hover:bg-error hover:text-white transition-all"
                 >
-                  <FaTrashAlt />
+                  <FaTrashAlt size={14} />
                 </button>
               </div>
             </div>
 
-            <h3 className="font-bold text-xl text-gray-800 mb-2">
+            <h3 className="font-black text-xl text-base-content mb-3 group-hover:text-primary transition-colors">
               {event.title}
             </h3>
-            <div className="space-y-1 text-sm text-gray-500 mb-4">
-              <p>📅 {new Date(event.eventDate).toDateString()}</p>
-              <p>📍 {event.location}</p>
-              <p className="font-semibold text-primary">
-                Fee: ${event.eventFee || 0}
-              </p>
+
+            <div className="space-y-3 text-sm text-base-content/60 mb-6">
+              <div className="flex items-center gap-2">
+                <span>📅</span>
+                <span className="font-medium">
+                  {new Date(event.eventDate).toDateString()}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span>📍</span>
+                <span className="font-medium line-clamp-1">
+                  {event.location}
+                </span>
+              </div>
+              <div className="pt-2">
+                <span className="text-lg font-black text-success">
+                  ${event.eventFee || 0}
+                </span>
+                <span className="text-[10px] ml-1 opacity-50 uppercase font-bold tracking-tighter">
+                  Entry Fee
+                </span>
+              </div>
             </div>
 
-            <button className="btn btn-sm btn-block btn-ghost border-gray-200 group-hover:bg-primary group-hover:text-white">
-              Details
+            <button className="btn btn-block bg-base-200 hover:bg-primary hover:text-white border-none rounded-2xl font-bold transition-all">
+              Manage Details
             </button>
           </div>
         ))}
       </div>
 
       {events.length === 0 && (
-        <div className="text-center py-20 bg-white rounded-2xl border-2 border-dashed">
-          <p className="text-gray-400 text-lg">
+        <div className="text-center py-24 bg-base-100 rounded-[3rem] border-4 border-dashed border-base-content/10">
+          <div className="text-6xl mb-4 opacity-20">📂</div>
+          <p className="text-base-content/40 text-xl font-bold italic">
             No events found. Start by creating one!
           </p>
         </div>

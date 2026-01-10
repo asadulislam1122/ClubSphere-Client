@@ -111,10 +111,10 @@ const UsersManagement = () => {
         <button className="btn btn-primary ml-2">Search</button>
       </div>
       {/*  */}
-      <div className="overflow-x-auto">
-        <table className="table">
+      <div className="overflow-x-auto rounded-xl">
+        <table className="table ">
           <thead>
-            <tr>
+            <tr className="bg-gradient-to-r from-blue-600 to-indigo-700">
               <th>No</th>
               <th>Photo & Name</th>
               <th>Email</th>

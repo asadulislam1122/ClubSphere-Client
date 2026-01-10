@@ -76,11 +76,11 @@ const ApproveManager = () => {
         Manager pending Approvel: ({managers.length})
       </h2>
       {/* table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto rounded-xl">
         <table className="table">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="bg-gradient-to-r from-blue-600 to-indigo-700">
               <th>No</th>
               <th>Photo & Name</th>
               <th>Email</th>

@@ -24,6 +24,8 @@ import ManageEvents from "../Pages/Dashboard/ManageEvents";
 import AllPayments from "../Pages/Dashboard/AllPayments";
 import ManagerRoute from "./ManagerRoute";
 import DashboardHome from "../Pages/Dashboard/DashboardHome";
+import MyProfile from "../Components/MyProfile/MyProfile";
+import About from "../Components/About";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +35,11 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+
+      {
+        path: "/about",
+        Component: About,
       },
       {
         path: "/manager",
@@ -101,6 +108,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: DashboardHome,
+      },
+      {
+        path: "profile",
+        Component: MyProfile,
       },
       {
         path: "my-club",

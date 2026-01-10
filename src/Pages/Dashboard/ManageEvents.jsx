@@ -78,7 +78,7 @@ const ManageEvents = () => {
         {events.map((event) => (
           <div
             key={event._id}
-            className="p-4 bg-white shadow rounded-lg flex justify-between items-center border"
+            className="p-4  shadow rounded-lg flex justify-between items-center border"
           >
             <div>
               <h3 className="font-bold text-lg">{event.title}</h3>

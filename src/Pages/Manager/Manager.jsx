@@ -35,7 +35,7 @@ const Manager = () => {
   };
 
   return (
-    <div className="max-w-xl mb-22 mx-auto p-6 border rounded-lg shadow-lg mt-10 bg-white">
+    <div className="max-w-xl mb-22 mx-auto p-6 border rounded-lg shadow-lg mt-10 ">
       <title>Be-A-Manager</title>
       <h2 className="text-3xl font-bold mb-6 text-center text-blue-600">
         Be A Manager
@@ -88,7 +88,7 @@ const Manager = () => {
                 message: "Invalid email address",
               },
             })}
-            className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-blue-300 bg-gray-50"
+            className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-blue-300 "
           />
           {errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
@@ -138,7 +138,7 @@ const Manager = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold rounded-lg hover:opacity-90 transition"
+          className="w-full cursor-pointer py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold rounded-lg hover:opacity-90 transition"
         >
           Apply Now
         </button>

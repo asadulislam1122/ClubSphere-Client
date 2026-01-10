@@ -37,7 +37,7 @@ const AllPayments = () => {
       <div className="overflow-x-auto bg-base-100 rounded-lg shadow">
         <table className="table w-full">
           <thead>
-            <tr className="bg-gray-200">
+            <tr className="bg-gradient-to-r from-blue-600 to-indigo-700">
               <th>#</th>
               <th>User Email</th>
               <th>Club/Event</th>

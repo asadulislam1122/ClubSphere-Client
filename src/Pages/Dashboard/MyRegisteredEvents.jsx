@@ -7,7 +7,6 @@ const MyRegisteredEvents = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  // ১. ইউজারের ইমেইল দিয়ে তার রেজিস্টার করা ইভেন্টগুলো ফেচ করা
   const { data: myEvents = [], isLoading } = useQuery({
     queryKey: ["my-registered-events", user?.email],
     queryFn: async () => {
@@ -32,10 +31,9 @@ const MyRegisteredEvents = () => {
         My Registered Events
       </h2>
 
-      <div className="overflow-x-auto bg-white rounded-lg shadow-md border">
+      <div className="overflow-x-auto  rounded-lg shadow-md border">
         <table className="table w-full">
-          {/* টেবিল হেড */}
-          <thead className="bg-primary text-white text-lg">
+          <thead className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white text-lg">
             <tr>
               <th>#</th>
               <th>Event Title</th>
@@ -47,7 +45,7 @@ const MyRegisteredEvents = () => {
           <tbody>
             {myEvents.length > 0 ? (
               myEvents.map((event, index) => (
-                <tr key={event._id} className="hover:bg-gray-50">
+                <tr key={event._id} className="">
                   <th>{index + 1}</th>
                   <td className="font-semibold text-primary">
                     {event.eventTitle}

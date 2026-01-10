@@ -63,9 +63,9 @@ const AddEvent = () => {
   };
 
   return (
-    <div className="p-6 md:p-12 bg-gray-50 min-h-screen">
+    <div className="p-6 md:p-12  min-h-screen">
       <title>Dashboard-Add-Event</title>
-      <div className="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+      <div className="max-w-2xl mx-auto  p-8 rounded-2xl shadow-xl border border-gray-100">
         <h2 className="text-3xl font-bold text-center text-primary mb-8">
           🎉 Create New Event
         </h2>
